@@ -9,7 +9,8 @@ import UIKit
 
 class TodoListController: UITableViewController {
 
-    let defaults = UserDefaults.standard
+    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        .first!.appendingPathComponent("ToDoList.plist")
 
     var todoList: [TodoListItem] = [
         TodoListItem("Buy Eggos", false),
@@ -70,24 +71,29 @@ class TodoListController: UITableViewController {
 
     //MARK: - Database reads and writes
 
-    
     func loadListData() {
-        if let strings = defaults.array(forKey: "todoListStrings") as? [String],
-           let bools = defaults.array(forKey: "todoListBools") as? [Bool] {
-            todoList = []
-            for index in 0..<(strings.count) {
-                todoList.append(TodoListItem(strings[index], bools[index]))
+
+        if let data = try? Data(contentsOf: dataFilePath) {
+            let decoder = PropertyListDecoder()
+            do {
+                todoList = try decoder.decode([TodoListItem].self	, from: data)
+            } catch {
+                print("Error decoding data: \(error)")
             }
-        } else {
-            print("Load from defaults failed")
+            } else {
+            print("Error reading data")
         }
+        tableView.reloadData()
     }
     
     func saveListData() {
-        let strings = todoList.map { $0.task}
-        let bools = todoList.map { $0.isChecked}
-        defaults.set(strings, forKey: "todoListStrings")
-        defaults.set(bools, forKey: "todoListBools")
+        let encoder = PropertyListEncoder()
+        do {
+            let data = try encoder.encode(todoList)
+            try data.write(to: dataFilePath)
+        } catch {
+            print("An error occured encoding and writing data \(error)")
+        }
         tableView.reloadData()
     }
 }

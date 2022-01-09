@@ -7,7 +7,7 @@
 
 import Foundation
 
-class TodoListItem {
+class TodoListItem: Codable {
     var task: String = ""
     var isChecked: Bool = false
 
