@@ -8,7 +8,9 @@
 import UIKit
 
 class TodoListController: UITableViewController {
-    
+
+    let defaults = UserDefaults.standard
+
     var todoList: [TodoListItem] = [
         TodoListItem("Buy Eggos", false),
         TodoListItem("Slay Dragon", true),
@@ -17,7 +19,7 @@ class TodoListController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        loadListData()
     }
     
     //MARK: - TableViewDataSource methods
@@ -36,11 +38,9 @@ class TodoListController: UITableViewController {
     //MARK: - TableViewDelegate methods
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("\"\(todoList[indexPath.row].task)\" selected")
         let row = indexPath.row
         todoList[row].isChecked.toggle()
-        tableView.cellForRow(at: indexPath)?.accessoryType = todoList[row].isChecked ? .checkmark : .none
-        tableView.deselectRow(at: indexPath, animated: true)
+        saveListData()
     }
   
     //MARK: - Add Item button pressed method
@@ -51,9 +51,18 @@ class TodoListController: UITableViewController {
         let alert = UIAlertController(title: "Add New Task", message: nil, preferredStyle: .alert)
         
         let action = UIAlertAction(title: "Add Item", style: .default) { action in
-            print("Done")
+            if let text = alert.textFields?.first?.text, text != "" {
+                let item = TodoListItem(text, false)
+                self.todoList.append(item)
+                self.saveListData()
+            }
         }
         alert.addAction(action)
+        
+        alert.addTextField { textField in
+            textField.placeholder = "Create new task"
+            
+        }
         present(alert, animated: true, completion: nil)
     }
     
@@ -63,11 +72,23 @@ class TodoListController: UITableViewController {
 
     
     func loadListData() {
-        
+        if let strings = defaults.array(forKey: "todoListStrings") as? [String],
+           let bools = defaults.array(forKey: "todoListBools") as? [Bool] {
+            todoList = []
+            for index in 0..<(strings.count) {
+                todoList.append(TodoListItem(strings[index], bools[index]))
+            }
+        } else {
+            print("Load from defaults failed")
+        }
     }
     
     func saveListData() {
-        
+        let strings = todoList.map { $0.task}
+        let bools = todoList.map { $0.isChecked}
+        defaults.set(strings, forKey: "todoListStrings")
+        defaults.set(bools, forKey: "todoListBools")
+        tableView.reloadData()
     }
 }
 
