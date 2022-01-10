@@ -69,7 +69,6 @@
 				A094BBA2278AB8E100F3B7BE /* Model */,
 				A094BB99278AB7B700F3B7BE /* LaunchScreen.storyboard */,
 				A094BB9C278AB7B700F3B7BE /* Info.plist */,
-				A094BB94278AB7B500F3B7BE /* TodoeyThree.xcdatamodeld */,
 			);
 			path = TodoeyThree;
 			sourceTree = "<group>";
@@ -77,6 +76,7 @@
 		A094BBA2278AB8E100F3B7BE /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A094BB94278AB7B500F3B7BE /* TodoeyThree.xcdatamodeld */,
 				A094BBA6278AB9A000F3B7BE /* Dummy.swift */,
 				A094BBA8278AC0B500F3B7BE /* TodoListItem.swift */,
 			);
