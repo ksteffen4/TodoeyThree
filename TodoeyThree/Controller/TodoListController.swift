@@ -67,16 +67,21 @@ class TodoListController: UITableViewController {
     }
     
 
-
     //MARK: - Database reads and writes
 
-    func loadListData() {
+    func loadListData(searchPredicate: NSPredicate? = nil) {
         let request : NSFetchRequest<Item> = Item.fetchRequest()
+        if searchPredicate != nil {
+            request.predicate = searchPredicate
+        }
+        let sortDescriptor = NSSortDescriptor(key: "title", ascending: true)
+        request.sortDescriptors = [sortDescriptor]
         do {
             todoList = try context.fetch(request)
         } catch {
             print("Error reading data from CoreData context: \(error)")
         }
+        tableView.reloadData()
     }
     
     func saveListData() {
@@ -88,4 +93,20 @@ class TodoListController: UITableViewController {
         tableView.reloadData()
     }
 }
-
+//MARK: - UISearchBarDelegate methods
+    
+extension TodoListController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if let text = searchBar.text, text != "" {
+            let predicate = NSPredicate(format: "title CONTAINS[cd] %@", text)
+            loadListData(searchPredicate: predicate)
+        }
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText == "" {
+            loadListData(searchPredicate: nil)
+        }
+    }
+    
+}
