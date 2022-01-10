@@ -14,6 +14,8 @@ class TodoListController: UITableViewController {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
     var todoList: [Item] = []
+    
+    var category: TodoCategory? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,11 +40,10 @@ class TodoListController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
         todoList[row].isChecked.toggle()
+        tableView.deselectRow(at: indexPath, animated: true)
         saveListData()
     }
   
-    //MARK: - Add Item button pressed method
-    
     
     @IBAction func addItemButtonPressed(_ sender: UIBarButtonItem) {
         
@@ -53,6 +54,7 @@ class TodoListController: UITableViewController {
                 let item = Item(context: self.context)
                 item.title = text
                 item.isChecked = false
+                item.parentCategory = self.category
                 self.todoList.append(item)
                 self.saveListData()
             }
@@ -70,9 +72,12 @@ class TodoListController: UITableViewController {
     //MARK: - Database reads and writes
 
     func loadListData(searchPredicate: NSPredicate? = nil) {
+        let categoryPredicate = NSPredicate(format: "parentCategory.name MATCHES %@", category!.name!)
         let request : NSFetchRequest<Item> = Item.fetchRequest()
         if searchPredicate != nil {
-            request.predicate = searchPredicate
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate, searchPredicate!])
+        } else {
+            request.predicate = categoryPredicate
         }
         let sortDescriptor = NSSortDescriptor(key: "title", ascending: true)
         request.sortDescriptors = [sortDescriptor]
