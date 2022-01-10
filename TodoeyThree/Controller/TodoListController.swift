@@ -70,6 +70,7 @@ class TodoListController: UITableViewController {
                         try self.realm.write {
                             let item = Item()
                             item.title = text
+                            item.date = Date().description
                             currentCategory.items.append(item)
                         }
                     } catch {
@@ -94,7 +95,7 @@ class TodoListController: UITableViewController {
 
     func loadListData(searchText: String? = nil) {
         todoList = category?.items
-            .sorted(byKeyPath: "title", ascending: true)
+            .sorted(byKeyPath: "date", ascending: true)
         if let text = searchText {
             todoList = todoList?.filter("title CONTAINS[cd] %@", text)
         }
