@@ -15,7 +15,6 @@
 		A094BB98278AB7B700F3B7BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A094BB97278AB7B700F3B7BE /* Assets.xcassets */; };
 		A094BB9B278AB7B700F3B7BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A094BB99278AB7B700F3B7BE /* LaunchScreen.storyboard */; };
 		A094BBA7278AB9A000F3B7BE /* Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A094BBA6278AB9A000F3B7BE /* Dummy.swift */; };
-		A094BBA9278AC0B500F3B7BE /* TodoListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A094BBA8278AC0B500F3B7BE /* TodoListItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +28,6 @@
 		A094BB9A278AB7B700F3B7BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A094BB9C278AB7B700F3B7BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A094BBA6278AB9A000F3B7BE /* Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dummy.swift; sourceTree = "<group>"; };
-		A094BBA8278AC0B500F3B7BE /* TodoListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,7 +76,6 @@
 			children = (
 				A094BB94278AB7B500F3B7BE /* TodoeyThree.xcdatamodeld */,
 				A094BBA6278AB9A000F3B7BE /* Dummy.swift */,
-				A094BBA8278AC0B500F3B7BE /* TodoListItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -179,7 +176,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A094BBA9278AC0B500F3B7BE /* TodoListItem.swift in Sources */,
 				A094BB96278AB7B500F3B7BE /* TodoeyThree.xcdatamodeld in Sources */,
 				A094BB90278AB7B500F3B7BE /* TodoListController.swift in Sources */,
 				A094BBA7278AB9A000F3B7BE /* Dummy.swift in Sources */,

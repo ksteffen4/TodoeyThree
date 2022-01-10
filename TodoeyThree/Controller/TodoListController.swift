@@ -6,17 +6,14 @@
 //
 
 import UIKit
+import CoreData
 
 class TodoListController: UITableViewController {
 
-    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        .first!.appendingPathComponent("ToDoList.plist")
+    // CoreData context
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
-    var todoList: [TodoListItem] = [
-        TodoListItem("Buy Eggos", false),
-        TodoListItem("Slay Dragon", true),
-        TodoListItem("Drive Car", false)
-    ]
+    var todoList: [Item] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +28,7 @@ class TodoListController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath)
-        cell.textLabel?.text = todoList[indexPath.row].task
+        cell.textLabel?.text = todoList[indexPath.row].title
         cell.accessoryType = todoList[indexPath.row].isChecked ? .checkmark : .none
         return cell
     }
@@ -53,7 +50,9 @@ class TodoListController: UITableViewController {
         
         let action = UIAlertAction(title: "Add Item", style: .default) { action in
             if let text = alert.textFields?.first?.text, text != "" {
-                let item = TodoListItem(text, false)
+                let item = Item(context: self.context)
+                item.title = text
+                item.isChecked = false
                 self.todoList.append(item)
                 self.saveListData()
             }
@@ -72,27 +71,19 @@ class TodoListController: UITableViewController {
     //MARK: - Database reads and writes
 
     func loadListData() {
-
-        if let data = try? Data(contentsOf: dataFilePath) {
-            let decoder = PropertyListDecoder()
-            do {
-                todoList = try decoder.decode([TodoListItem].self	, from: data)
-            } catch {
-                print("Error decoding data: \(error)")
-            }
-            } else {
-            print("Error reading data")
+        let request : NSFetchRequest<Item> = Item.fetchRequest()
+        do {
+            todoList = try context.fetch(request)
+        } catch {
+            print("Error reading data from CoreData context: \(error)")
         }
-        tableView.reloadData()
     }
     
     func saveListData() {
-        let encoder = PropertyListEncoder()
         do {
-            let data = try encoder.encode(todoList)
-            try data.write(to: dataFilePath)
+            try context.save()
         } catch {
-            print("An error occured encoding and writing data \(error)")
+            print("Error saving CoreData context: \(error)")
         }
         tableView.reloadData()
     }
