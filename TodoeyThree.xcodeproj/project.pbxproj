@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		91FB85390D09CBED317C0613 /* Pods_TodoeyThree.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A013A9AE87B4805BB672DF99 /* Pods_TodoeyThree.framework */; };
 		A094BB8C278AB7B500F3B7BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A094BB8B278AB7B500F3B7BE /* AppDelegate.swift */; };
 		A094BB8E278AB7B500F3B7BE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A094BB8D278AB7B500F3B7BE /* SceneDelegate.swift */; };
 		A094BB90278AB7B500F3B7BE /* TodoListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A094BB8F278AB7B500F3B7BE /* TodoListController.swift */; };
@@ -24,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		977E2336EB37181D3711EE83 /* Pods-TodoeyThree.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodoeyThree.debug.xcconfig"; path = "Target Support Files/Pods-TodoeyThree/Pods-TodoeyThree.debug.xcconfig"; sourceTree = "<group>"; };
+		A013A9AE87B4805BB672DF99 /* Pods_TodoeyThree.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TodoeyThree.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A094BB88278AB7B500F3B7BE /* TodoeyThree.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoeyThree.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A094BB8B278AB7B500F3B7BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A094BB8D278AB7B500F3B7BE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,6 +40,7 @@
 		A094BBB3278C38FF00F3B7BE /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		A094BBB5278C391300F3B7BE /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		A094BBBA278D2D4100F3B7BE /* SwipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTableViewController.swift; sourceTree = "<group>"; };
+		EC650A214BB47EF0F0E5D886 /* Pods-TodoeyThree.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodoeyThree.release.xcconfig"; path = "Target Support Files/Pods-TodoeyThree/Pods-TodoeyThree.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,17 +51,30 @@
 				A094BBB0278C2F1A00F3B7BE /* RealmSwift in Frameworks */,
 				A094BBB9278C89CB00F3B7BE /* SwipeCellKit in Frameworks */,
 				A094BBAE278C2F1A00F3B7BE /* Realm in Frameworks */,
+				91FB85390D09CBED317C0613 /* Pods_TodoeyThree.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		21FF824009CAF62A38C84C48 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				977E2336EB37181D3711EE83 /* Pods-TodoeyThree.debug.xcconfig */,
+				EC650A214BB47EF0F0E5D886 /* Pods-TodoeyThree.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		A094BB7F278AB7B500F3B7BE = {
 			isa = PBXGroup;
 			children = (
 				A094BB8A278AB7B500F3B7BE /* TodoeyThree */,
 				A094BB89278AB7B500F3B7BE /* Products */,
+				21FF824009CAF62A38C84C48 /* Pods */,
+				D559F434840F8ACE3E367EE9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -120,6 +137,14 @@
 			path = SupportFiles;
 			sourceTree = "<group>";
 		};
+		D559F434840F8ACE3E367EE9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A013A9AE87B4805BB672DF99 /* Pods_TodoeyThree.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -127,9 +152,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A094BB9F278AB7B700F3B7BE /* Build configuration list for PBXNativeTarget "TodoeyThree" */;
 			buildPhases = (
+				688B388FF7CC7EFAE4DF507E /* [CP] Check Pods Manifest.lock */,
 				A094BB84278AB7B500F3B7BE /* Sources */,
 				A094BB85278AB7B500F3B7BE /* Frameworks */,
 				A094BB86278AB7B500F3B7BE /* Resources */,
+				367BAA40B5330FDFF8C1909E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -170,8 +197,8 @@
 			);
 			mainGroup = A094BB7F278AB7B500F3B7BE;
 			packageReferences = (
-				A094BBAC278C2F1A00F3B7BE /* XCRemoteSwiftPackageReference "realm-swift" */,
-				A094BBB7278C89CB00F3B7BE /* XCRemoteSwiftPackageReference "SwipeCellKit" */,
+				A094BBAC278C2F1A00F3B7BE /* XCRemoteSwiftPackageReference "realm-swift.git" */,
+				A094BBB7278C89CB00F3B7BE /* XCRemoteSwiftPackageReference "SwipeCellKit.git" */,
 			);
 			productRefGroup = A094BB89278AB7B500F3B7BE /* Products */;
 			projectDirPath = "";
@@ -194,6 +221,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		367BAA40B5330FDFF8C1909E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TodoeyThree/Pods-TodoeyThree-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TodoeyThree/Pods-TodoeyThree-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TodoeyThree/Pods-TodoeyThree-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		688B388FF7CC7EFAE4DF507E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TodoeyThree-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A094BB84278AB7B500F3B7BE /* Sources */ = {
@@ -351,6 +420,7 @@
 		};
 		A094BBA0278AB7B700F3B7BE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 977E2336EB37181D3711EE83 /* Pods-TodoeyThree.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -379,6 +449,7 @@
 		};
 		A094BBA1278AB7B700F3B7BE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EC650A214BB47EF0F0E5D886 /* Pods-TodoeyThree.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -429,7 +500,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		A094BBAC278C2F1A00F3B7BE /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+		A094BBAC278C2F1A00F3B7BE /* XCRemoteSwiftPackageReference "realm-swift.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift.git";
 			requirement = {
@@ -437,7 +508,7 @@
 				version = 10.21.0;
 			};
 		};
-		A094BBB7278C89CB00F3B7BE /* XCRemoteSwiftPackageReference "SwipeCellKit" */ = {
+		A094BBB7278C89CB00F3B7BE /* XCRemoteSwiftPackageReference "SwipeCellKit.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwipeCellKit/SwipeCellKit.git";
 			requirement = {
@@ -450,17 +521,17 @@
 /* Begin XCSwiftPackageProductDependency section */
 		A094BBAD278C2F1A00F3B7BE /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A094BBAC278C2F1A00F3B7BE /* XCRemoteSwiftPackageReference "realm-swift" */;
+			package = A094BBAC278C2F1A00F3B7BE /* XCRemoteSwiftPackageReference "realm-swift.git" */;
 			productName = Realm;
 		};
 		A094BBAF278C2F1A00F3B7BE /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A094BBAC278C2F1A00F3B7BE /* XCRemoteSwiftPackageReference "realm-swift" */;
+			package = A094BBAC278C2F1A00F3B7BE /* XCRemoteSwiftPackageReference "realm-swift.git" */;
 			productName = RealmSwift;
 		};
 		A094BBB8278C89CB00F3B7BE /* SwipeCellKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A094BBB7278C89CB00F3B7BE /* XCRemoteSwiftPackageReference "SwipeCellKit" */;
+			package = A094BBB7278C89CB00F3B7BE /* XCRemoteSwiftPackageReference "SwipeCellKit.git" */;
 			productName = SwipeCellKit;
 		};
 /* End XCSwiftPackageProductDependency section */
