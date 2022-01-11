@@ -20,6 +20,7 @@
 		A094BBB4278C38FF00F3B7BE /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = A094BBB3278C38FF00F3B7BE /* Item.swift */; };
 		A094BBB6278C391300F3B7BE /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = A094BBB5278C391300F3B7BE /* Category.swift */; };
 		A094BBB9278C89CB00F3B7BE /* SwipeCellKit in Frameworks */ = {isa = PBXBuildFile; productRef = A094BBB8278C89CB00F3B7BE /* SwipeCellKit */; };
+		A094BBBB278D2D4100F3B7BE /* SwipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A094BBBA278D2D4100F3B7BE /* SwipeTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		A094BBAA278C0EB300F3B7BE /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		A094BBB3278C38FF00F3B7BE /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		A094BBB5278C391300F3B7BE /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		A094BBBA278D2D4100F3B7BE /* SwipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 			children = (
 				A094BBAA278C0EB300F3B7BE /* CategoryViewController.swift */,
 				A094BB8F278AB7B500F3B7BE /* TodoListController.swift */,
+				A094BBBA278D2D4100F3B7BE /* SwipeTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -197,6 +200,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A094BBBB278D2D4100F3B7BE /* SwipeTableViewController.swift in Sources */,
 				A094BB90278AB7B500F3B7BE /* TodoListController.swift in Sources */,
 				A094BBA7278AB9A000F3B7BE /* Dummy.swift in Sources */,
 				A094BB8C278AB7B500F3B7BE /* AppDelegate.swift in Sources */,
@@ -430,7 +434,7 @@
 			repositoryURL = "https://github.com/realm/realm-swift.git";
 			requirement = {
 				kind = exactVersion;
-				version = 10.20.1;
+				version = 10.21.0;
 			};
 		};
 		A094BBB7278C89CB00F3B7BE /* XCRemoteSwiftPackageReference "SwipeCellKit" */ = {
