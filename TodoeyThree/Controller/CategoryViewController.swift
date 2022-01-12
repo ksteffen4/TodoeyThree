@@ -17,14 +17,18 @@ class CategoryViewController: SwipeTableViewController {
     
     var categories: Results<Category>?
     
+    func setNavBar() {
+        navigationController?.navigationBar.backgroundColor = .systemBlue
+        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+        navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadCategories()
         tableView.separatorStyle = .none
-        navigationController?.navigationBar.backgroundColor = .systemBlue
-        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
-        navigationController?.navigationBar.tintColor = UIColor.white
-        print(navigationController?.navigationBar.titleTextAttributes)
+        setNavBar()
     }
 
     // MARK: - Table view data source
@@ -35,8 +39,14 @@ class CategoryViewController: SwipeTableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        let category = categories?[indexPath.row] ?? Category()
         cell.textLabel?.text = categories?[indexPath.row].name ?? "No categories added yet"
-        cell.backgroundColor = UIColor.randomFlat()
+        let bgHex = category.color
+        let bgColor = UIColor(hexString: bgHex)!
+        let fgColor = ContrastColorOf(bgColor, returnFlat: true)
+        cell.backgroundColor = bgColor
+        cell.textLabel?.textColor = fgColor
+        setNavBar()
         return cell
     }
     
@@ -49,6 +59,7 @@ class CategoryViewController: SwipeTableViewController {
             if let text = alert.textFields?.first?.text, text != "" {
                 let category = Category()
                 category.name = text
+                category.color = UIColor.randomFlat().hexValue()
                 self.save(category: category)
             }
         }
@@ -74,10 +85,19 @@ class CategoryViewController: SwipeTableViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! TodoListController
+        destinationVC.categoryViewControler = self
         if let indexPath = tableView.indexPathForSelectedRow {
             destinationVC.category = categories?[indexPath.row] ?? nil
             tableView.deselectRow(at: indexPath, animated: true)
-        }
+            let color = UIColor(hexString: destinationVC.category!.color)!
+            if let navBar = navigationController?.navigationBar {
+                navBar.backgroundColor = color
+                let contrast = ContrastColorOf(color, returnFlat: true)
+                navBar.tintColor = contrast
+                navBar.titleTextAttributes = [.foregroundColor: contrast]
+                navBar.largeTitleTextAttributes = [.foregroundColor: contrast]
+            }
+       }
     }
     
 //MARK: - Data management
@@ -117,3 +137,4 @@ class CategoryViewController: SwipeTableViewController {
     }
 
 }
+

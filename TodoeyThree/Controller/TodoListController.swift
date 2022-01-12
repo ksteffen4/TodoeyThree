@@ -7,6 +7,7 @@
 
 import UIKit
 import RealmSwift
+import ChameleonFramework
 
 class TodoListController: SwipeTableViewController {
 
@@ -18,10 +19,23 @@ class TodoListController: SwipeTableViewController {
             loadListData()
         }
     }
+    
+    var categoryViewControler: CategoryViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let currentCategory = category {
+            navigationItem.title = currentCategory.name
+        }
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        if let controller = categoryViewControler {
+            controller.setNavBar()
+        }
+        super.viewWillDisappear(animated)
+    }
+    
     
     //MARK: - TableViewDataSource methods
     
@@ -34,6 +48,13 @@ class TodoListController: SwipeTableViewController {
         if let item = todoList?[indexPath.row] {
             cell.textLabel?.text = item.title
             cell.accessoryType = item.done ? .checkmark : .none
+            let category = item.parentCategory.first!
+            let baseColor = UIColor(hexString: category.color)!
+            let percent = 0.5 * Double(indexPath.row)/Double(todoList!.count)
+            let bgColor = baseColor.darken(byPercentage: percent)!
+            let textColor = ContrastColorOf(bgColor, returnFlat: true)
+            cell.backgroundColor = bgColor
+            cell.textLabel?.textColor = textColor
         } else {
             cell.textLabel?.text = "Empty list entry"
             cell.accessoryType = .none
