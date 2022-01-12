@@ -11,6 +11,7 @@ import ChameleonFramework
 
 class TodoListController: SwipeTableViewController {
 
+    @IBOutlet var searchBar: UISearchBar!
     let realm = try! Realm()
     var todoList: Results<Item>?
     
@@ -27,6 +28,16 @@ class TodoListController: SwipeTableViewController {
         if let currentCategory = category {
             navigationItem.title = currentCategory.name
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let bgColor = UIColor(hexString: category!.color)!
+//        let fgColor = ContrastColorOf(bgColor, returnFlat: true)
+//        searchBar.searchBarStyle = .minimal
+//        searchBar.barTintColor = bgColor
+//        searchBar.tintColor = fgColor
+        tableView.backgroundColor = bgColor
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {

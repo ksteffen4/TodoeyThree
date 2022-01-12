@@ -22,6 +22,7 @@ class CategoryViewController: SwipeTableViewController {
         navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        tableView.backgroundColor = .systemBlue
     }
     
     override func viewDidLoad() {
@@ -134,6 +135,10 @@ class CategoryViewController: SwipeTableViewController {
                 print("Error deleting category from realm: \(error)")
             }
         }
+    }
+    
+    @IBAction func unwindToCategoryController(_ segue: UIStoryboardSegue) {
+        print("About to bring up CategoryViewController")
     }
 
 }
